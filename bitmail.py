@@ -9,5 +9,5 @@ class BitMail:
         server.sendmail(
             "admin@farhadkia.ir",
             "farhad2161@gmail.com",
-            f"[randbit]{message}")
+            "[randbit]"+message)
         server.quit()
