@@ -27,8 +27,8 @@ def run(name):
         wif = bitlib.BitGen.private2wif(private_key)
         address = bitlib.BitGen.private2address(private_key)
         balance = bitnet.get_balance(address)
-        print("private:{},wif:{},address:{},balance:{}".format(
-            private_key, wif, address, balance))
+        # print("private:{},wif:{},address:{},balance:{}".format(
+        #     private_key, wif, address, balance))
 
         if balance.isdigit() == False:
             print(balance)
