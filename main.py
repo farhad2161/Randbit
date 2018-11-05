@@ -26,7 +26,7 @@ def run(name):
             f.write(message)
             f.close()
             print(message)
-            bitmail.send_email(message)
+            bitmail.send_email("Found", message)
 
 
 if __name__ == '__main__':
@@ -36,7 +36,7 @@ if __name__ == '__main__':
                              bitconf.smtp_username, bitconf.smtp_password)
     bitnet = bitlib.BitNet(bitconf.http_proxy_url, bitconf.http_proxy_port)
 
-    bitmail.send_email("I am runing")
+    bitmail.send_email("Started", "I am runing")
     for x in range(bitconf.thread_count):
         thread_name = "Thread-{}".format(x + 1)
         mythread = threading.Thread(target=run, args=(thread_name,))
