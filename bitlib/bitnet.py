@@ -29,6 +29,3 @@ class BitNet:
         r = requests.get(
             "https://api.blockcypher.com/v1/btc/main/addrs/"+address+"/balance", proxies=self.proxy)
         return str(r.json()['balance'])
-
-# a=BitNet.get_balance_btc_com("15urYnyeJe3gwbGJ74wcX89Tz7ZtsFDVew")
-# print(a)
