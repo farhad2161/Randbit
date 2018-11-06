@@ -20,6 +20,15 @@ class BitNet:
             return self.get_balance(address)
         return r.text
 
+    def get_balance_blockexplorer_com(self, address):
+        r = requests.get(
+            "https://blockexplorer.com/api/addr/{}/balance".format(address), proxies=self.proxy)
+        if r.text.isdigit() == False:
+            print(r.text)
+            time.sleep(1)
+            return self.get_balance_blockexplorer_com(address)
+        return r.text
+
     def get_balance_btc_com(self, address):
         r = requests.get(
             "https://chain.api.btc.com/v3/address/"+address, proxies=self.proxy)
