@@ -11,11 +11,12 @@ def run(name):
         address = bitlib.BitGen.private2address(private_key)
         balance = bitnet.get_balance(address)
 
-        message = "private:{},wif:{},address:{},balance:{}\n".format(
+        message = "private:{},wif:{},address:{},balance:{}".format(
             private_key, wif, address, balance)
 
         if bitconf.log:
             print(message)
+            bitlog.log(message)
 
         if balance.isdigit() == False:
             print(balance)
@@ -23,7 +24,7 @@ def run(name):
 
         if balance != "0":
             f = open("success.txt", "a")
-            f.write(message)
+            f.write(message+"\n")
             f.close()
             print(message)
             bitmail.send_email("Found", message)
@@ -35,6 +36,8 @@ if __name__ == '__main__':
     bitmail = bitlib.BitMail(bitconf.smtp_host, bitconf.smtp_port,
                              bitconf.smtp_username, bitconf.smtp_password)
     bitnet = bitlib.BitNet(bitconf.http_proxy_url, bitconf.http_proxy_port)
+
+    bitlog = bitlib.BitLog()
 
     bitmail.send_email("Started", "I am runing")
     for x in range(bitconf.thread_count):
