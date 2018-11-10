@@ -15,8 +15,9 @@ def run(name):
             private_key, wif, address, balance)
 
         if bitconf.log:
-            print(message)
-            bitlog.log(message)
+            log_message = "{},{}".format(name, message)
+            print(log_message)
+            bitlog.log(log_message)
 
         if balance.isdigit() == False:
             print(balance)
