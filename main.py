@@ -9,7 +9,7 @@ def run(name):
         private_key = bitlib.BitGen.generate_private_key()
         wif = bitlib.BitGen.private2wif(private_key)
         address = bitlib.BitGen.private2address(private_key)
-        balance = bitnet.get_balance(address)
+        balance = bitnet.get_balance_bitaps_com(address)
 
         message = "private:{},wif:{},address:{},balance:{}".format(
             private_key, wif, address, balance)

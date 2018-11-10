@@ -11,18 +11,23 @@ class BitNet:
             self.proxy = dict(http=http_proxu_url+":"+http_proxy_port,
                               https=http_proxu_url+":"+http_proxy_port)
 
-    def get_balance(self, address):
+    def get_balance_blockchain_info(self, address):
         try:
             r = requests.get(
                 "https://blockchain.info/q/addressbalance/"+address, proxies=self.proxy)
             if r.text.isdigit() == False:
                 print(r.text)
                 time.sleep(1)
-                return self.get_balance(address)
+                return self.get_balance_blockchain_info(address)
             return r.text
         except:
             time.sleep(60)
-            return self.get_balance(address)
+            return self.get_balance_blockchain_info(address)
+
+    def get_balance_bitaps_com(self, address):
+        r = requests.get("https://bitaps.com/api/address/" +
+                         address, proxies=self.proxy)
+        return str(r.json()['balance'])
 
     def get_balance_blockexplorer_com(self, address):
         r = requests.get(
