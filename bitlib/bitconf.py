@@ -5,6 +5,7 @@ class BitConf:
     CONFIG_SECTION_NETWORK = "NETWORK"
     CONFIG_SECTION_NETWORK_HTTP_PROXY_URL = "HTTP_PROXY_URL"
     CONFIG_SECTION_NETWORK_HTTP_PROXY_PORT = "HTTP_PROXY_PORT"
+    CONFIG_SECTION_NETWORK_API_URL = "API_SITE"
 
     CONFIG_SECTION_SMTP = "SMTP"
     CONFIG_SECTION_SMTP_HOST = "HOST"
@@ -24,7 +25,8 @@ class BitConf:
         }
         self.config[self.CONFIG_SECTION_NETWORK] = {
             self.CONFIG_SECTION_NETWORK_HTTP_PROXY_URL: "",
-            self.CONFIG_SECTION_NETWORK_HTTP_PROXY_PORT: 0
+            self.CONFIG_SECTION_NETWORK_HTTP_PROXY_PORT: 0,
+            self.CONFIG_SECTION_NETWORK_API_URL: ""
         }
         self.config[self.CONFIG_SECTION_SMTP] = {
             self.CONFIG_SECTION_SMTP_HOST: "",
@@ -37,6 +39,7 @@ class BitConf:
         self.config.read('config.ini')
         self.http_proxy_url = self.config[self.CONFIG_SECTION_NETWORK][self.CONFIG_SECTION_NETWORK_HTTP_PROXY_URL]
         self.http_proxy_port = self.config[self.CONFIG_SECTION_NETWORK][self.CONFIG_SECTION_NETWORK_HTTP_PROXY_PORT]
+        self.api_url = self.config[self.CONFIG_SECTION_NETWORK][self.CONFIG_SECTION_NETWORK_API_URL]
         self.smtp_host = self.config[self.CONFIG_SECTION_SMTP][self.CONFIG_SECTION_SMTP_HOST]
         self.smtp_port = self.config[self.CONFIG_SECTION_SMTP][self.CONFIG_SECTION_SMTP_PORT]
         self.smtp_username = self.config[self.CONFIG_SECTION_SMTP][self.CONFIG_SECTION_SMTP_USERNAME]
