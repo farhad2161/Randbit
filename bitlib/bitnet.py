@@ -9,9 +9,10 @@ class BitNet:
 
     def __init__(self, api_url, http_proxu_url, http_proxy_port):
         self.api_url = api_url
+        self.session = requests.Session()
         if http_proxu_url:
-            self.proxy = dict(http=http_proxu_url+":"+http_proxy_port,
-                              https=http_proxu_url+":"+http_proxy_port)
+            self.proxy = dict(http=http_proxu_url + ":" + http_proxy_port,
+                              https=http_proxu_url + ":" + http_proxy_port)
 
     def get_balance(self, address):
         try:
@@ -47,26 +48,26 @@ class BitNet:
             return self.get_balance(address)
 
     def get_balance_blockchain_info(self, address):
-        r = requests.get(
-            "https://blockchain.info/q/addressbalance/"+address, proxies=self.proxy)
+        r = self.session.get(
+            "https://blockchain.info/q/addressbalance/" + address, proxies=self.proxy)
 
         return r.text
 
     def get_balance_bitaps_com(self, address):
-        r = requests.get("https://bitaps.com/api/address/" +
-                         address, proxies=self.proxy)
+        r = self.session.get("https://bitaps.com/api/address/" +
+                             address, proxies=self.proxy)
 
         return str(r.json()['balance'])
 
     def get_balance_blockexplorer_com(self, address):
-        r = requests.get(
+        r = self.session.get(
             "https://blockexplorer.com/api/addr/{}/balance".format(address), proxies=self.proxy)
 
         return r.text
 
     def get_balance_btc_com(self, address):
-        r = requests.get(
-            "https://chain.api.btc.com/v3/address/"+address, proxies=self.proxy)
+        r = self.session.get(
+            "https://chain.api.btc.com/v3/address/" + address, proxies=self.proxy)
 
         r = r.json()
         if r['data'] == None:
@@ -75,7 +76,7 @@ class BitNet:
         return r['data']['balance']
 
     def get_balance_blockcypher_com(self, address):
-        r = requests.get(
-            "https://api.blockcypher.com/v1/btc/main/addrs/"+address+"/balance", proxies=self.proxy)
+        r = self.session.get(
+            "https://api.blockcypher.com/v1/btc/main/addrs/" + address + "/balance", proxies=self.proxy)
 
         return str(r.json()['balance'])
