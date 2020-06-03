@@ -3,13 +3,13 @@ import smtplib
 
 class BitMail:
 
-    def __init__(self, smtp_host, smtp_port, smtp_username, smtp_password):
+    def __init__(self, smtp_host, smtp_port, smtp_username, smtp_password, mail_from, mail_to):
         self.smtp_host = smtp_host
         self.smtp_port = smtp_port
         self.smtp_username = smtp_username
         self.smtp_password = smtp_password
-        self.mail_from = "admin@farhadkia.ir"
-        self.mail_to = "farhad2161@gmail.com"
+        self.mail_from = mail_from
+        self.mail_to = mail_to
 
     def send_email(self, subject, message):
         if not self.smtp_host:

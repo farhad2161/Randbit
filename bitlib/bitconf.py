@@ -12,6 +12,8 @@ class BitConf:
     CONFIG_SECTION_SMTP_PORT = "PORT"
     CONFIG_SECTION_SMTP_USERNAME = "USERNAME"
     CONFIG_SECTION_SMTP_PASSWORD = "PASSWORD"
+    CONFIG_SECTION_SMTP_MAIL_FROM = "MAIL_FROM"
+    CONFIG_SECTION_SMTP_MAIL_TO = "MAIL_TO"
 
     CONFIG_SECTION_MAIN = "MAIN"
     CONFIG_SECTION_MAIN_THREAD_COUNT = "THREAD_COUNT"
@@ -32,7 +34,9 @@ class BitConf:
             self.CONFIG_SECTION_SMTP_HOST: "",
             self.CONFIG_SECTION_SMTP_PORT: 0,
             self.CONFIG_SECTION_SMTP_USERNAME: "",
-            self.CONFIG_SECTION_SMTP_PASSWORD: ""
+            self.CONFIG_SECTION_SMTP_PASSWORD: "",
+            self.CONFIG_SECTION_SMTP_MAIL_FROM: "",
+            self.CONFIG_SECTION_SMTP_MAIL_TO: "",
         }
 
     def load(self):
@@ -44,7 +48,7 @@ class BitConf:
         self.smtp_port = self.config[self.CONFIG_SECTION_SMTP][self.CONFIG_SECTION_SMTP_PORT]
         self.smtp_username = self.config[self.CONFIG_SECTION_SMTP][self.CONFIG_SECTION_SMTP_USERNAME]
         self.smtp_password = self.config[self.CONFIG_SECTION_SMTP][self.CONFIG_SECTION_SMTP_PASSWORD]
-        self.thread_count = int(self.config[self.CONFIG_SECTION_MAIN]
-                                [self.CONFIG_SECTION_MAIN_THREAD_COUNT])
-        self.log = int(
-            self.config[self.CONFIG_SECTION_MAIN][self.CONFIG_SECTION_MAIN_LOG])
+        self.smtp_mail_from = self.config[self.CONFIG_SECTION_SMTP][self.CONFIG_SECTION_SMTP_MAIL_FROM]
+        self.smtp_mail_to = self.config[self.CONFIG_SECTION_SMTP][self.CONFIG_SECTION_SMTP_MAIL_TO]
+        self.thread_count = int(self.config[self.CONFIG_SECTION_MAIN][self.CONFIG_SECTION_MAIN_THREAD_COUNT])
+        self.log = int(self.config[self.CONFIG_SECTION_MAIN][self.CONFIG_SECTION_MAIN_LOG])

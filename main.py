@@ -1,4 +1,5 @@
 import threading
+
 import bitlib
 
 
@@ -25,7 +26,7 @@ def run(name):
 
         if balance != "0":
             f = open("success.txt", "a")
-            f.write(message+"\n")
+            f.write(message + "\n")
             f.close()
             print(message)
             bitmail.send_email("Found", message)
@@ -34,14 +35,13 @@ def run(name):
 if __name__ == '__main__':
     bitconf = bitlib.BitConf()
     bitconf.load()
-    bitmail = bitlib.BitMail(bitconf.smtp_host, bitconf.smtp_port,
-                             bitconf.smtp_username, bitconf.smtp_password)
-    bitnet = bitlib.BitNet(
-        bitconf.api_url, bitconf.http_proxy_url, bitconf.http_proxy_port)
+    bitmail = bitlib.BitMail(bitconf.smtp_host, bitconf.smtp_port, bitconf.smtp_username, bitconf.smtp_password,
+                             bitconf.smtp_mail_from, bitconf.smtp_mail_to)
+    bitnet = bitlib.BitNet(bitconf.api_url, bitconf.http_proxy_url, bitconf.http_proxy_port)
 
     bitlog = bitlib.BitLog()
 
-    bitmail.send_email("Started", "I am runing")
+    bitmail.send_email("Started", "I am running")
     for x in range(bitconf.thread_count):
         thread_name = "Thread-{}".format(x + 1)
         mythread = threading.Thread(target=run, args=(thread_name,))
