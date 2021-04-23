@@ -21,3 +21,12 @@ python main.py
 * Support multiple website for checking balance
 * Log to file and logrotate
 * Send email when find address with some balance
+
+
+## Donation
+
+Bitcoin:
+3Ch9TcvSk4cWt4EWwEJLPMttq1C8sc3HmD
+
+Ethereum:
+0xC591B313875DBF4Af06EeE429a3980Af4ea75d6f
