@@ -54,10 +54,14 @@ class BitNet:
         return r.text
 
     def get_balance_bitaps_com(self, address):
-        r = self.session.get("https://bitaps.com/api/address/" +
+        r = self.session.get("https://api.bitaps.com/btc/v1/blockchain/address/state/" +
                              address, proxies=self.proxy)
 
-        return str(r.json()['balance'])
+        r = r.json()
+        if r['data'] == None:
+            return "0"
+
+        return str(r['data']['balance'])
 
     def get_balance_blockexplorer_com(self, address):
         r = self.session.get(
@@ -73,7 +77,7 @@ class BitNet:
         if r['data'] == None:
             return "0"
 
-        return r['data']['balance']
+        return str(r['data']['balance'])
 
     def get_balance_blockcypher_com(self, address):
         r = self.session.get(

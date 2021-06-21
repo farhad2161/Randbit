@@ -5,7 +5,7 @@ Generate random bitcoin private key and check it's balance automatically.
 
 1. Install python 3 and then,
 ```python
-pip install -r requirment
+pip install -r requirements.txt
 ```
 
 2. Copy `config.sample.ini` and rename it to `config.ini`.
